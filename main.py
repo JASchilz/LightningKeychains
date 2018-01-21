@@ -7,7 +7,7 @@ from wtfpeewee.orm import model_form
 import wtforms
 
 from model import Order
-from lnd import make_invoice
+from lnd import make_invoice, get_info
 
 app = Flask(__name__)
 
@@ -18,6 +18,12 @@ del OrderForm.request_hash
 del OrderForm.tracking_number
 del OrderForm.paid
 del OrderForm.expired
+
+identity_pubkey = get_info()['identity_pubkey']
+
+@app.context_processor
+def inject_identity_pubkey():
+    return {'identity_pubkey': identity_pubkey}
 
 @app.route('/')
 def home():
