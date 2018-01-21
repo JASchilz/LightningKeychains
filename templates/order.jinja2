@@ -1,0 +1,29 @@
+{% extends 'base.jinja2' %}
+
+{% block subtitle %}Buy a Custom 3D Printed Keychain {% endblock subtitle %}
+
+{% block content %}
+<p>Buy a somewhat beautiful, custom, 3D printed keychain. Does not include the keychain ring.</p>
+
+<p>This application is operating on <strong>testnet3</strong>. You will not receive a physical keychain. I have developed this application for demonstration purposes and our mutual testing benefit. See <a href="https://github.com/JASchilz/LightningKeychains">this project on GitHub</a> to view the code and see plans for future development and improvement. If this page gets any use, then I may roll to mainnet and sell actual 3D printed keychains.</p>
+
+<p>Cost is 100tsat plus 20tsat per letter. Given that this application is running on testnet and you will receive no keychain, put whatever you like for contact and shipping information.</p>
+
+{% for field, errors in form.errors.items() %}
+<div class="error">
+    {{ form[field].label }}: {{ ', '.join(errors) }}
+</div>
+{% endfor %}
+
+<form method="POST" action="{{ url_for('create_order') }}">
+    <table>
+    {% for field in form %}
+        <tr>
+        <th>{{ field.label }} {% if field.flags.required %}*{% endif %}:</th> <td>{{ field }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <p><button type="submit">Submit</button></p>
+</form>
+
+{% endblock content %}

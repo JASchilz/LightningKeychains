@@ -1,0 +1,28 @@
+{% extends 'base.jinja2' %}
+
+{% block subtitle %}Order Status {% endblock subtitle %}
+
+{% block content %}
+
+<h3>Order Process</h3>
+<p>Your order has been created. You may refresh this page to check your order status. Your order will be processed as follows:
+    <ol>
+        <li>You may make your payment at any time before the expiry of the invoice.</li>
+        <li>Within a few seconds of making your payment, you should be able to refresh this page and see that your invoice is paid.</li>
+        <li>Given that we are operating on testnet, you will not receive a keychain, and no other fields will be updated.</li>
+    </ol>
+</p>
+
+<p>See <a href="https://github.com/JASchilz/LightningKeychains">this project's GitHub page</a> for more information and planned improvements.</p>
+
+<h3>Order Details</h3>
+<p>
+Cost (tsat): {{ order.cost_satoshis }}<br>
+{% if not order.paid %}
+Payment Request: : <span class="payment-request">{{ order.payment_request }}</span><br>(<a href="lightning:{{ order.payment_request }}">Link</a>)<br>
+{% endif %}
+Paid: {% if order.paid %} True {% else %} False {% endif %}<br>
+Tracking Number: {{ order.tracking_number }}
+</p>
+
+{% endblock content %}

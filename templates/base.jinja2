@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Lightning Network Keychains</title>
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+    <div class="container body-container">
+        <div class="top-nav">
+            <nav>
+                <div style="float:left">
+                    <a href="{{ url_for('home') }}">Place an Order</a>
+                    <a href="https://github.com/JASchilz/LightningKeychains">GitHub</a>
+                </div>
+                <div style="float:right">
+                    <!-- Perhaps put user login here -->
+                </div>
+            </nav>
+        </div>
+        <div class="header">
+            <h1>Lightning Network Keychains</h1>
+            <h2>{% block subtitle %} {% endblock subtitle %}</h2>
+        </div>
+        <div class="content">
+            {% block content %} {% endblock content %}
+        </div>
+        <div class="footer">
+            Tesla coil lightning image used under a Creative Commons License via <a href="https://commons.wikimedia.org/wiki/File:225W_Zeus_Tesla_coil_-_arcs2_(cropped).jpg">Wikimedia</a>
+        </div>
+    </div>
+    
+</body>
+
