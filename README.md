@@ -1,6 +1,6 @@
 # Lighting Keychains
 
-A demonstration [lightning network](https://lightning.network/) store, using the [LND](https://github.com/lightningnetwork/lnd) lightning client, written in Python using [Flask](https://github.com/pallets/flask) and [peewee](https://github.com/coleifer/peewee). Currently running on testnet3 and viewable at [https://lightningkeychains.com](https://lightningkeychains.com): try it out!
+A demonstration [lightning network](https://lightning.network/) store, using the [LND](https://github.com/lightningnetwork/lnd) lightning client, written in Python using [Flask](https://github.com/pallets/flask) and [peewee](https://github.com/coleifer/peewee). Currently running on testnet3 and viewable at [https://lightningkeychains.com](https://lightningkeychains.com): try it out (it could be down)!
 
 With this project I hope to demonstrate how easy it is to integrate a command line lightning network client with your own favorite code base. In particular, the file [lnd.py](lnd.py) provides the Python functions which interact with the LND client. Creating a slick user interface is not in the scope of this project.
 
@@ -33,4 +33,4 @@ Documenting how to deploy to a production environment is outside the scope of th
 
 ## Further Development
 
-When the LND opens to mainnet, I may roll the [https://lightningkeychains.com](https://lightningkeychains.com) store to mainnet and begin selling actual 3D printed keychains. To support that, I would program in e-mail sending and an administrative interface that I could use to process orders.
+When the LND opens to mainnet, I may roll the [https://lightningkeychains.com](https://lightningkeychains.com) (it could be down) store to mainnet and begin selling actual 3D printed keychains. To support that, I would program in e-mail sending and an administrative interface that I could use to process orders.
