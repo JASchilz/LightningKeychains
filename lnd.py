@@ -2,6 +2,15 @@ import subprocess
 import json
 
 def _process_result(completed_process):
+    """
+    Helper function that takes a completed process and returns None on failure
+    or a dictionary on success.
+    
+    The `lncli` commands output JSON dictionaries on success, so if return code
+    is 0 then we should be able to return the `json.loads` of that output.
+    
+    It could be nice to raise Exceptions here, rather than returning None.
+    """
     if completed_process.returncode == 0:
         return json.loads(completed_process.stdout.decode())
     else:
