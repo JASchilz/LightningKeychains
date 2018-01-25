@@ -21,9 +21,18 @@ del OrderForm.expired
 
 identity_pubkey = get_info()['identity_pubkey']
 
+# Set the following environment variables if you would like to publish your
+# lnd client's port and address
+public_address = os.environ.get("LND_PUBLIC_ADDRESS", None)
+public_port = os.environ.get("LND_PUBLIC_PORT", None)
+
 @app.context_processor
-def inject_identity_pubkey():
-    return {'identity_pubkey': identity_pubkey}
+def inject_node_info():
+    return {
+        'identity_pubkey': identity_pubkey,
+        'public_address': public_address,
+        'public_port': public_port,
+    }
 
 @app.route('/')
 def home():
