@@ -24,7 +24,7 @@
             {% block content %} {% endblock content %}
         </div>
         <div class="footer">
-            Pubkey: {{ identity_pubkey }}{% if public_address %}@{{ public_address }}{% if public_port %}:{{public_port}}<br>
+            Pubkey: {{ identity_pubkey }}{% if public_address %}@{{ public_address }}{% if public_port %}:{{public_port}}{% endif %}{% endif %}<br>
             Tesla coil lightning image used under a Creative Commons License via <a href="https://commons.wikimedia.org/wiki/File:225W_Zeus_Tesla_coil_-_arcs2_(cropped).jpg">Wikimedia</a>
         </div>
     </div>
