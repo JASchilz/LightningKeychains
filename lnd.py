@@ -1,36 +1,41 @@
 import subprocess
 import json
 
-def _process_result(completed_process):
+class LNDConnectionError(RuntimeError):
+    pass
+
+class LNCLIRuntimeError(RuntimeError):
+    pass
+
+def _lncli_execute(lncli_args):
     """
-    Helper function that takes a completed process and returns None on failure
-    or a dictionary on success.
-    
-    The `lncli` commands output JSON dictionaries on success, so if return code
-    is 0 then we should be able to return the `json.loads` of that output.
-    
-    It could be nice to raise Exceptions here, rather than returning None.
+    Helper function that runs lncli with the given arguments, and returns the
+    result as a dictionary. All elements of the list of arguments must be strings
+
+    Eg: _lncli_execute(["addinvoice", "2000"])
+    Returns: { "r_hash": "3ab56...", "pay_req": "lntb5738nmq70..."}
+
+    See "lncli help" for details on what to expect from executing lncli.
     """
+
+    command = ["lncli"] + lncli_args
+
+    completed_process = subprocess.run(command, stdout=subprocess.PIPE)
+
     if completed_process.returncode == 0:
         return json.loads(completed_process.stdout.decode())
     else:
-        return None
-
-def get_invoice(request_hash):
-    result = subprocess \
-        .run(["lncli", "lookupinvoice", request_hash], stdout=subprocess.PIPE)
-
-    return _process_result(result)
-
+        if "the connection is unavailable" in completed_process.stdout.decode():
+            raise LNDConnectionError("Could not connect to LND process.")
+        else:
+            raise LNCLIRuntimeError
 
 def make_invoice(cost_satoshis):
-    result = subprocess \
-        .run(["lncli", "addinvoice", str(cost_satoshis)], stdout=subprocess.PIPE)
+    return _lncli_execute(["addinvoice", str(cost_satoshis)])
 
-    return _process_result(result)
+def get_invoice(request_hash):
+    return _lncli_execute(["lookupinvoice", request_hash])
 
 def get_info():
-    result = subprocess.run(["lncli", "getinfo"], stdout=subprocess.PIPE)
-
-    return _process_result(result)
+    return _lncli_execute(["getinfo"])
 
