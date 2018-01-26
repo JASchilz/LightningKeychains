@@ -14,12 +14,14 @@ This project requires Python3.
 
 You can configure the application using the following environment variables
 
-| Name               | Description                                         | File                 |
-| ------------------ | --------------------------------------------------- | ---------------------|
-| DATABASE_URL       | Database connection URL                             | [model.py](model.py) |
-| PORT               | The port to serve this web application on           | [main.py](main.py)   |
-| LND_PUBLIC_ADDRESS | The address of your LND node, if public             | [main.py](main.py)   |
-| LND_PUBLIC_PORT    | The port of your LND node, clients will assume 9735 | [main.py](main.py)   |
+| Name               | Description                                             | File                 |
+| ------------------ | ------------------------------------------------------- | ---------------------|
+| DATABASE_URL       | Database connection URL                                 | [model.py](model.py) |
+| PORT               | The port to serve this web application on; default 5000 | [main.py](main.py)   |
+| LND_PUBLIC_ADDRESS | The address of your LND node, if public                 | [main.py](main.py)   |
+| LND_PUBLIC_PORT    | The port of your LND node; clients will assume 9735     | [main.py](main.py)   |
+
+All environment configuration variables are *optional*. The `LND_PUBLIC_ADDRESS` variable is only required if your node is publically accessible and you want to publish its address on your store front.
 
 ## Installation/Running
 
