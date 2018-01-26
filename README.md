@@ -12,7 +12,14 @@ This project requires Python3.
 
 ## Configuration
 
-Looking at the [model.py](model.py) file, you can provide a `DATABASE_URL` environment variable to change the backing database store from SQLite to any database supported by the peewee ORM.
+You can configure the application using the following environment variables
+
+| Name               | Description                                         | File                 |
+| ------------------ | --------------------------------------------------- | ---------------------|
+| DATABASE_URL       | Database connection URL                             | [model.py](model.py) |
+| PORT               | The port to serve this web application on           | [main.py](main.py)   |
+| LND_PUBLIC_ADDRESS | The address of your LND node, if public             | [main.py](main.py)   |
+| LND_PUBLIC_PORT    | The port of your LND node, clients will assume 9735 | [main.py](main.py)   |
 
 ## Installation/Running
 
