@@ -2,11 +2,20 @@
 
 A demonstration [lightning network](https://lightning.network/) store, using the [LND](https://github.com/lightningnetwork/lnd) lightning client, written in Python using [Flask](https://github.com/pallets/flask) and [peewee](https://github.com/coleifer/peewee). Currently running on testnet3 and viewable at [https://lightningkeychains.com](https://lightningkeychains.com): try it out (it could be down)!
 
-With this project I hope to demonstrate how easy it is to integrate a command line lightning network client with your own favorite code base. In particular, the file [lnd.py](lnd.py) provides the Python functions which interact with the LND client. Creating a slick user interface is not in the scope of this project.
+The [simple branch](https://github.com/JASchilz/LightningKeychains/tree/simple) is a kind of proof of concept that shows how easily you can integrate your favorite command line lightning network client with your favorite web framework. In particular, the file [lnd.py](lnd.py) provides the Python functions which interact with the LND client. I'll be developing a fully featured web store on the [master branch](https://github.com/JASchilz/LightningKeychains/tree/simple) that I'll deploy on mainnet and sell actual 3D printed keychains from.
 
 ## Requirements
 
 In addition to the package requirements listed in [requirements.txt](requirements.txt), you must also have a functioning LND client. LND must be installed, connected to the network, and available at the command line the store can create invoices and receive payments. If you encounter difficulty registering payments in the web store, first check that you are able to receive payments at the command line using `lncli`.
+
+In particular, you much be able to do the following at the command line:
+```
+$ lncli addinvoice 2000
+{ "r_hash": "3ab56...", "pay_req": "lntb5738nmq70..."}
+
+$ lncli getinvoice 3ab56...
+{...}
+```
 
 This project requires Python3.
 
